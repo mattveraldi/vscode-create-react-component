@@ -14,20 +14,20 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"commands": [
-			{
-				"command": "react-create-component.createReactComponent",
-				"title": "Create React Component"
-			}
-		],
+		"commands": [{
+			"command": "react-create-component.createReactComponent",
+			"title": "Create React Component",
+		}],
 		"menus": {
-			"explorer/context": [
-				{
-					"when": "explorerResourceIsFolder",
-					"command": "react-create-component.createReactComponent",
-					"group": "ReactCreate@1"
-				}
-			]
+			"explorer/context": [{
+				"when": "explorerResourceIsFolder",
+				"command": "react-create-component.createReactComponent",
+				"group": "ReactCreate@1"
+			}],
+			"commandPalette": [{
+				"command": "react-create-component.createReactComponent",
+				"when": "false"
+			}]
 		}
 	},
 	"scripts": {
