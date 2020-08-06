@@ -2,6 +2,8 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 import * as fs from "fs";
+import * as ejs from "ejs";
+import * as path from "path";
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -22,28 +24,77 @@ async function createReactComponentHandler(uri: vscode.Uri) {
 	const componentName = await vscode.window.showInputBox();
 
 	// if the user canceled
-	if(!componentName) {
+	if (!componentName) {
 		return;
 	}
 	// if the target path is unavailable
-	else if(!targetPath){
+	else if (!targetPath) {
 		vscode.window.showErrorMessage("Unable to get the target path.");
 	}
 	// if the name is not valid
-	else if(!isComponentNameValid(componentName)) {
+	else if (!isComponentNameValid(componentName)) {
 		vscode.window.showErrorMessage("Component name has wrong characters.");
 	}
 	else {
+		const directory: string = `${targetPath}/${componentName}`;
+
+		// if the directory exists, show message and return
+		if (fs.existsSync(directory)) {
+			vscode.window.showErrorMessage(`${componentName} already exists.`);
+			return;
+		}
+
 		// create the component's directory
-		fs.mkdir(`${targetPath}/${componentName}`, err => {
+		fs.mkdir(directory, err => {
 			err && vscode.window.showErrorMessage(`Error: ${err?.name}`);
+			console.error(err);
 		});
+
+		try {
+
+			// Component
+			const renderedComponent = await ejs.renderFile(path.join(__dirname, 'templates/component/component.ejs'), { name: componentName });
+			fs.writeFile(`${directory}/${componentName}.js`, renderedComponent, (err) => {
+				err && vscode.window.showErrorMessage(`Error: ${err?.name}`);
+				console.error(err);
+			});
+
+			// SCSS
+			const renderedScss = await ejs.renderFile(path.join(__dirname, 'templates/component/component.scss.ejs'), { name: componentName });
+			fs.writeFile(`${directory}/${componentName}.scss`, renderedScss, (err) => {
+				err && vscode.window.showErrorMessage(`Error: ${err?.name}`);
+				console.error(err);
+			});
+
+			// Test and scenario
+			const renderedTest = await ejs.renderFile(path.join(__dirname, 'templates/component/component.test.ejs'), { name: componentName });
+			const renderedScenario = await ejs.renderFile(path.join(__dirname, 'templates/component/component.scenario.ejs'), { name: componentName });
+
+			fs.mkdir(`${directory}/__test__`, err => {
+				err && vscode.window.showErrorMessage(`Error: ${err?.name}`);
+				console.error(err);
+			});
+
+			fs.writeFile(`${directory}/__test__/${componentName}.test.js`, renderedTest, (err) => {
+				err && vscode.window.showErrorMessage(`Error: ${err?.name}`);
+				console.error(err);
+			});
+
+			fs.writeFile(`${directory}/__test__/${componentName}.scenario.js`, renderedScenario, (err) => {
+				err && vscode.window.showErrorMessage(`Error: ${err?.name}`);
+				console.error(err);
+			});
+
+		} catch (error) {
+			console.log(error);
+		}
 	}
 }
 
 function isComponentNameValid(name: string) {
-	const validator = /^[A-z][0-9]?$/
-	return name.match(validator);
+	// const validator = /^[A-z][0-9]?$/;
+	// return name.match(validator);
+	return true;
 }
 
 // this method is called when your extension is deactivated
