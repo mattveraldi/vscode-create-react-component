@@ -4,6 +4,7 @@ import * as vscode from 'vscode';
 import * as fs from "fs";
 import * as ejs from "ejs";
 import * as path from "path";
+import * as componentFiles from "./templates/component";
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -53,22 +54,22 @@ async function createReactComponentHandler(uri: vscode.Uri) {
 		try {
 
 			// Component
-			const renderedComponent = await ejs.renderFile(path.join(__dirname, 'templates/component/component.ejs'), { name: componentName });
+			const renderedComponent = await ejs.render(componentFiles.default.Component, { name: componentName });
 			fs.writeFile(`${directory}/${componentName}.js`, renderedComponent, (err) => {
 				err && vscode.window.showErrorMessage(`Error: ${err?.name}`);
 				console.error(err);
 			});
 
 			// SCSS
-			const renderedScss = await ejs.renderFile(path.join(__dirname, 'templates/component/component.scss.ejs'), { name: componentName });
+			const renderedScss = await ejs.render(componentFiles.default.ComponentScss, { name: componentName });
 			fs.writeFile(`${directory}/${componentName}.scss`, renderedScss, (err) => {
 				err && vscode.window.showErrorMessage(`Error: ${err?.name}`);
 				console.error(err);
 			});
 
 			// Test and scenario
-			const renderedTest = await ejs.renderFile(path.join(__dirname, 'templates/component/component.test.ejs'), { name: componentName });
-			const renderedScenario = await ejs.renderFile(path.join(__dirname, 'templates/component/component.scenario.ejs'), { name: componentName });
+			const renderedTest = await ejs.render(componentFiles.default.ComponentTest, { name: componentName });
+			const renderedScenario = await ejs.render(componentFiles.default.ComponentTestScenario, { name: componentName });
 
 			fs.mkdir(`${directory}/__test__`, err => {
 				err && vscode.window.showErrorMessage(`Error: ${err?.name}`);
