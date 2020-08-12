@@ -1,4 +1,4 @@
-import <%= name%> from '../<%= name%>';
+export default `import <%= name%> from '../<%= name%>';
 import { render, screen } from '@testing-library/react';
 import <%= name%>Scenario from './<%= name%>.scenario.js';
 
@@ -18,4 +18,4 @@ describe("<%= name%>", () => {
     //     container = renderContainer;
     //     debug = renderDebug;
     // });
-});
+});`

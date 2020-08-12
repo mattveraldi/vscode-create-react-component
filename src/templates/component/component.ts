@@ -1,4 +1,4 @@
-import React from 'react';
+export default `import React from 'react';
 import propTypes from 'prop-types';
 import '<%= name %>.scss';
 
@@ -17,4 +17,4 @@ export default function <%= name %>({}) {
 
 <%= name %>.propTypes = {
 
-}
+}`;
