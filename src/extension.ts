@@ -93,9 +93,8 @@ async function createReactComponentHandler(uri: vscode.Uri) {
 }
 
 function isComponentNameValid(name: string) {
-	// const validator = /^[A-z][0-9]?$/;
-	// return name.match(validator);
-	return true;
+    const pascalCaseValidator = /[A-Z]([A-Z0-9]*[a-z][a-z0-9]*[A-Z]|[a-z0-9]*[A-Z][A-Z0-9]*[a-z])[A-Za-z0-9]*/;
+    return name.match(pascalCaseValidator);
 }
 
 // this method is called when your extension is deactivated
