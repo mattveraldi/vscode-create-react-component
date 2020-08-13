@@ -1,0 +1,33 @@
+{
+	"New unit test": {
+		"scope": "javascript",
+		"prefix": "nrtu",
+		"body": [
+			"test('it should $1', () => {",
+			"\t$2",
+			"});"
+		],
+		"description": "Add a test unit case"
+	},
+	"New describe test": {
+		"scope": "javascript",
+		"prefix": "nrtd",
+		"body": [
+			"describe('$1', () => {",
+			"\ttest('it should $2', () => {",
+			"\t$3",
+			"\t});",
+			"});"
+		],
+		"description": "Add a describe test case"
+	},
+
+	"New todo test": {
+		"scope": "javascript",
+		"prefix": "nrutt",
+		"body": [
+			"test.todo('it should $1')",
+		],
+		"description": "Add a todo unit test case"
+	}
+}
