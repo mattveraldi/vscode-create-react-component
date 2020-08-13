@@ -1,0 +1,73 @@
+{
+	// Place your config-and-snippets workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"scope": "javascript,typescript",
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+
+	"React component": {
+		"scope": "javascript",
+		"prefix": "nrc",
+		"body": [
+			"import React from 'react';",
+			"import propTypes from 'prop-types';",
+			"\n",
+			"/**",
+			" * Explain what the component does in a sentence.",
+			" * @param {typeOfParam} nameOfParam - this is how you should declare parameters",
+			" * @return {typeOfReturn} this is how you should declare the return type",
+			" * @example",
+			" * you can add example code here of how the component should be useed (simple case)(optional)",
+			" */",
+			"export default function $1({}) {",
+			"    return(",
+			"        <h1>$1 Component</h1>",
+			"    )",
+			"}",
+			"\n",
+			"$1.propTypes = {",
+			"\n",
+			"}"
+		],
+		"description": "Write react component boilerplate."
+	},
+
+	"React test component": {
+		"scope": "javascript",
+		"prefix": "nrtc",
+		"body": [
+			"import $1 from '../$1';",
+			"import { render, screen } from '@testing-library/react';",
+			"import $1Scenario from './$1.scenario.js';",
+			"\n",
+			"/**",
+			" * this is a @testing-library/react render wrapper",
+			" * @param {Object} Scenario ",
+			" */",
+			"const renderFromScenario = (Scenario) => render(<$1 {...Scenario}/>);",
+			"\n",
+			"\n",
+			"describe('$1', () => {",
+			"    // decomment this block of code if all test should render the same scenario.",
+			"    // const container;",
+			"    // const debug;",
+			"    // beforeEach(() => {",
+			"    //     const {container: renderContainer, debug: renderDebug} = renderFromScenario($1Scenario);",
+			"    //     container = renderContainer;",
+			"    //     debug = renderDebug;",
+			"    // });",
+			"});",
+		]
+	}
+}
