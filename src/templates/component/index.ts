@@ -1,11 +1,11 @@
 import Component from "./component";
-import ComponentScss from "./component.scss";
+import ComponentCss from "./component.css";
 import ComponentTest from "./component.test";
 import ComponentTestScenario from "./component.scenario";
 
 export default {
     Component,
-    ComponentScss,
+    ComponentCss,
     ComponentTest,
     ComponentTestScenario
 }

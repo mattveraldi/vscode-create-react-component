@@ -7,7 +7,7 @@ import '<%= name %>.scss';
  * @param {typeOfParam} nameOfParam - this is how you should declare parameters
  * @return {typeOfReturn} this is how you should declare the return type
  * @example
- * you can add example code here of how the component should be useed (simple case)(optional)
+ * you can add example code here of how the component should be used (simple case)(optional)
  */
 export default function <%= name %>({}) {
     return(

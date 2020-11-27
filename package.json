@@ -1,8 +1,9 @@
 {
 	"name": "react-create-component",
-	"displayName": "react-create-component",
-	"description": "create react component's boilerplate.",
-	"version": "0.0.1",
+	"displayName": "React Create Component",
+	"description": "Creates all files needed for a component to be built.",
+	"publisher": "MatteoVeraldi",
+	"version": "1.0.0",
 	"engines": {
 		"vscode": "^1.47.0"
 	},
@@ -16,7 +17,7 @@
 	"contributes": {
 		"commands": [{
 			"command": "react-create-component.createReactComponent",
-			"title": "Create React Component",
+			"title": "Create React Component"
 		}],
 		"menus": {
 			"explorer/context": [{
@@ -28,7 +29,11 @@
 				"command": "react-create-component.createReactComponent",
 				"when": "false"
 			}]
-		}
+		},
+		"snippets": [{
+			"language": "javascript",
+			"path": "./src/snippets/react-test.code-snippets.json"
+		}]
 	},
 	"scripts": {
 		"vscode:prepublish": "yarn run compile",

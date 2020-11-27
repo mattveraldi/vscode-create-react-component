@@ -3,7 +3,6 @@
 import * as vscode from 'vscode';
 import * as fs from "fs";
 import * as ejs from "ejs";
-import * as path from "path";
 import * as componentFiles from "./templates/component";
 
 // this method is called when your extension is activated
@@ -24,6 +23,11 @@ async function createReactComponentHandler(uri: vscode.Uri) {
 	const targetPath = uri['fsPath'];
 	const componentName = await vscode.window.showInputBox();
 
+	//
+	// Handle errors that may happen on the 
+	// name's typing phase.
+	//
+
 	// if the user canceled
 	if (!componentName) {
 		return;
@@ -36,7 +40,13 @@ async function createReactComponentHandler(uri: vscode.Uri) {
 	else if (!isComponentNameValid(componentName)) {
 		vscode.window.showErrorMessage("Component name has wrong characters.");
 	}
+
 	else {
+
+		//
+		// Prepare the directory
+		//
+
 		const directory: string = `${targetPath}/${componentName}`;
 
 		// if the directory exists, show message and return
@@ -53,6 +63,10 @@ async function createReactComponentHandler(uri: vscode.Uri) {
 
 		try {
 
+			//
+			// Create all the component's files
+			//
+
 			// Component
 			const renderedComponent = await ejs.render(componentFiles.default.Component, { name: componentName });
 			fs.writeFile(`${directory}/${componentName}.js`, renderedComponent, (err) => {
@@ -60,9 +74,9 @@ async function createReactComponentHandler(uri: vscode.Uri) {
 				console.error(err);
 			});
 
-			// SCSS
-			const renderedScss = await ejs.render(componentFiles.default.ComponentScss, { name: componentName });
-			fs.writeFile(`${directory}/${componentName}.scss`, renderedScss, (err) => {
+			// CSS
+			const renderedCss = await ejs.render(componentFiles.default.ComponentCss, { name: componentName });
+			fs.writeFile(`${directory}/${componentName}.css`, renderedCss, (err) => {
 				err && vscode.window.showErrorMessage(`Error: ${err?.name}`);
 				console.error(err);
 			});
@@ -87,14 +101,14 @@ async function createReactComponentHandler(uri: vscode.Uri) {
 			});
 
 		} catch (error) {
-			console.log(error);
+			vscode.window.showErrorMessage(`Error: ${error?.name}`);
 		}
 	}
 }
 
 function isComponentNameValid(name: string) {
-    const pascalCaseValidator = /[A-Z]([A-Z0-9]*[a-z][a-z0-9]*[A-Z]|[a-z0-9]*[A-Z][A-Z0-9]*[a-z])[A-Za-z0-9]*/;
-    return name.match(pascalCaseValidator);
+	const pascalCaseValidator = /[A-Z]([A-Z0-9]*[a-z][a-z0-9]*[A-Z]|[a-z0-9]*[A-Z][A-Z0-9]*[a-z])[A-Za-z0-9]*/;
+	return name.match(pascalCaseValidator);
 }
 
 // this method is called when your extension is deactivated
