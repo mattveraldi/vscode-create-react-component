@@ -1,5 +1,5 @@
 # React Create Component
-
+![](Demo.gif)
 ## The problem :x:
 The boilerplate to create a React component is often the same and can be automated.
 
