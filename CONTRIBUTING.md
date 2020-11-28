@@ -5,13 +5,15 @@ Please, feel free to submit issues, improvement ideas and/or PRs. :smiley:
 * bugfix/brief-description
 * feature/brief-description
 ## Code styling
-language: English
-Class names: PascalCase
-Function and class instances: camelCase
-constants and enumerators: UPPER_SNAKE_CASE
-Folders: kebab-case
+* language: English
+* Class names: PascalCase
+* Function and class instances: camelCase
+* constants and enumerators: UPPER_SNAKE_CASE
+* utility file names: camelCase
+* class file names: PascalCase
+* Folder names: kebab-case
 
-Your code should be readable, so overall there shouldn't be too much comments, don't be afraid to add them where they are needed... But if you add a lot of them, maybe you should try to refactor your code to make it more readable and understandable.
+Your code should be readable, so overall there shouldn't be too much comments, don't be afraid to add them where they are needed... But if you add a lot of them, maybe you should try to refactor your code to make it more readable and understandable. \
 
 Try to keep code organized in folder structures.
 Readability and Mantainability are the keys.
