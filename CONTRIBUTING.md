@@ -1,5 +1,5 @@
 # CONTRIBUTING
-Please, feel free to submit issues, improvement ideas and/or PRs. :smiley:
+Please, feel free to submit issues, improvement ideas and/or PRs. 😁
 # How to contribute bug reports or feature requests
 ## Branch name conventions
 * bugfix/brief-description
