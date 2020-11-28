@@ -1,15 +1,20 @@
 {
-	"name": "react-create-component",
-	"displayName": "React Create Component",
-	"description": "Creates all files needed for a component to be built.",
+	"name": "create-react-component",
+	"displayName": "Create React Component",
+	"description": "Automates the process of creating files for a React component.",
 	"publisher": "MatteoVeraldi",
 	"version": "1.0.0",
-	"engines": {
-		"vscode": "^1.47.0"
-	},
+	"icon": "images/icon.png",
 	"categories": [
 		"Other"
 	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mattveraldi/react-create-component-extension"
+	},
+	"engines": {
+		"vscode": "^1.47.0"
+	},
 	"activationEvents": [
 		"onCommand:react-create-component.createReactComponent"
 	],
@@ -29,11 +34,7 @@
 				"command": "react-create-component.createReactComponent",
 				"when": "false"
 			}]
-		},
-		"snippets": [{
-			"language": "javascript",
-			"path": "./src/snippets/react-test.code-snippets.json"
-		}]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "yarn run compile",
