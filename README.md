@@ -1,5 +1,5 @@
 # React Create Component
-![](Demo.gif)
+![](Demo.**gif**)
 ## The problem :x:
 The boilerplate to create a React component is often the same and can be automated.
 
@@ -10,4 +10,4 @@ Right-click on the folder that you want your component to be placed in, select '
 For now the extension is very minimalistic, it will create a **Stateless Javascript functional component** with a CSS file for the stylesheet and a folder with a basic setup for its unit tests (@testing-library).
 
 ## Next steps
-Please, see CONTRIBUTING.md.
+Please, see [CONTRIBUTING.md](CONTRIBUTING.md)
