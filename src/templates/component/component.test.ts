@@ -1,12 +1,11 @@
 export default `import <%= name%> from '../<%= name%>';
 import { render, screen } from '@testing-library/react';
-import <%= name%>Scenario from './<%= name%>.scenario.js';
 
 /**
- * this is a @testing-library/react render wrapper
- * @param {Object} Scenario 
+ * Renders the component based on props to test each scenario separately. 
+ * @param {Object} props 
  */
-const renderFromScenario = (Scenario) => render(<<%= name%> {...Scenario}/>);
+const renderFromScenario = (props) => render(<<%= name%> {...props}/>);
 
 
 describe("<%= name%>", () => {
@@ -14,7 +13,8 @@ describe("<%= name%>", () => {
     // const container;
     // const debug;
     // beforeEach(() => {
-    //     const {container: renderContainer, debug: renderDebug} = renderFromScenario(<%= name%>Scenario);
+    //     const scenario = {}; // fill it with your props' scenario.
+    //     const {container: renderContainer, debug: renderDebug} = renderFromScenario(...scenario);
     //     container = renderContainer;
     //     debug = renderDebug;
     // });

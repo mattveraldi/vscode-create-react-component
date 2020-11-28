@@ -4,10 +4,7 @@ import '<%= name %>.scss';
 
 /**
  * Explain what the component does in a sentence.
- * @param {typeOfParam} nameOfParam - this is how you should declare parameters
- * @return {typeOfReturn} this is how you should declare the return type
- * @example
- * you can add example code here of how the component should be used (simple case)(optional)
+ * (to see how to document Javascript code: https://jsdoc.app/about-getting-started.html)
  */
 export default function <%= name %>({}) {
     return(

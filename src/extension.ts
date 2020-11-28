@@ -83,7 +83,6 @@ async function createReactComponentHandler(uri: vscode.Uri) {
 
 			// Test and scenario
 			const renderedTest = await ejs.render(componentFiles.default.ComponentTest, { name: componentName });
-			const renderedScenario = await ejs.render(componentFiles.default.ComponentTestScenario, { name: componentName });
 
 			fs.mkdir(`${directory}/__test__`, err => {
 				err && vscode.window.showErrorMessage(`Error: ${err?.name}`);
@@ -95,11 +94,6 @@ async function createReactComponentHandler(uri: vscode.Uri) {
 				console.error(err);
 			});
 
-			fs.writeFile(`${directory}/__test__/${componentName}.scenario.js`, renderedScenario, (err) => {
-				err && vscode.window.showErrorMessage(`Error: ${err?.name}`);
-				console.error(err);
-			});
-
 		} catch (error) {
 			vscode.window.showErrorMessage(`Error: ${error?.name}`);
 		}
@@ -107,8 +101,8 @@ async function createReactComponentHandler(uri: vscode.Uri) {
 }
 
 function isComponentNameValid(name: string) {
-	const pascalCaseValidator = /[A-Z]([A-Z0-9]*[a-z][a-z0-9]*[A-Z]|[a-z0-9]*[A-Z][A-Z0-9]*[a-z])[A-Za-z0-9]*/;
-	return name.match(pascalCaseValidator);
+	// spaces and foreward slashes would break the logic.
+	return !name.match(/\s|\//);
 }
 
 // this method is called when your extension is deactivated
