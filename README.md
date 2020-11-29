@@ -1,5 +1,5 @@
 # React Create Component
-![](https://github.com/mattveraldi/react-create-component-extension/blob/master/Demo.gif?raw=true)
+![](images/Demo.gif)
 ## The problem ❌
 The boilerplate to create a React component is often the same and can be automated.
 
